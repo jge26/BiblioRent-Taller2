@@ -1,0 +1,26 @@
+@startuml
+top to bottom direction
+skin rose
+
+Entity BiblioTech {
+}
+Entity Libro {
+titulo
+autor
+categoria
+isbm
+}
+Entity Socio{
+nombre
+apellido
+numeroSocio
+correo
+contrasenia
+listaLibrosPrestados
+}
+
+BiblioTech --> "1..*" Socio: tiene >
+BiblioTech --> "1..*" Libro: tiene >
+
+@enduml
+

@@ -1,0 +1,82 @@
+@startuml
+top to bottom direction
+skin rose
+
+class BiblioTech {
+-socios: ListaSocios
+-libros: ListaLibros
+}
+
+class Socio {
+-nombre: String
+-apellido: String
+-numeroSocio: int
+-correoSocio: String
+-contrasenia: String
+
++socio(nombre: String, apellido: String, numeroSocio: int, correoSocio: String, contrasenia: String)
++getNombre(): String
++getApellido(): String
++getNumeroSocio(): int
++getCorreoSocio(): String
++getContrasenia(): String
+}
+
+class Libro {
+-autor: String
+-titulo: String
+-categoria: String
+-isbm: String
+
++libro(autor: String, titulo: String, categoria: String, isbm: String)
++getTitulo(): String
++getAutor(): String
++getCategoria(): String
++getIsbm(): String
+}
+
+class listaLibrosPrestados {
+-librosPrestados: LibrosPrestados[]
+-cantidadLibros: int
+
++listaLibrosPrestados(cantidadLibrosMaxima: int)
++existe(numeroSocio: int): boolean
++agregar(LibrosPrestados: libro):void
++obtener(posicion: int): librosPrestados
+}
+
+class listaSocios {
+-socio: listaSocios[]
+-cantidadSocios: int
+-maximoSocios: int
+
++listaSocios(max:int)
++agregarSocio(socio:Socio)
++eliminarSocio(socio:Socio)
++buscarSocio(numeroSocio:int):Socio
++posicionSocio:(numeroSocio:int):int
++obtenerPosicionSocio(posicionSocio:int):Socio
+}
+class listaLibros {
+-libro: listaLibros[]
+-cantidadLibros: int
+-maximoLibros: int
+
++listaLibros(max:int)
++agregarLibro(libro:Libro)
++eliminarLibro(libro:Libro)
++buscarLibro(numeroLibro:int):Libro
++posicionLibro:(numeroLibro:int):int
++obtenerPosicionLibro(posicionLibro:int):Libro
+}
+
+BiblioTech  --> "1" listaLibros: tiene >
+BiblioTech  --> "1" listaSocios: tiene >
+
+Socio "*" --> "1" listaSocios: se almacenan en >
+Libro "*" --> "1" listaLibros: se almacenan en >
+
+Socio "1" --> "1" listaLibrosPrestados: tiene >
+
+
+@enduml
